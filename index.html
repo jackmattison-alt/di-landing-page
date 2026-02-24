@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICS Digital Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0b1b3f;
+      --navy-dark: #0a1628;
+      --accent: #2563eb;
+      --text-dark: #111827;
+      --text-body: #4b5563;
+      --bg-light: #f3f6fb;
+      --white: #ffffff;
+      --star: #f59e0b;
+      --success: #22c55e;
+      --max-width: 1200px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-body);
+      background-color: var(--white);
+      line-height: 1.6;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    a {
+      text-decoration: none;
+    }
+    .container {
+      width: min(100%, var(--max-width));
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--navy);
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      color: var(--white);
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--white);
+      font-weight: 500;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: background 0.3s ease, color 0.3s ease, border 0.3s ease, transform 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background: #1e4fd4;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    .btn-outline-dark {
+      border: 1px solid var(--navy);
+      color: var(--navy);
+      background: transparent;
+    }
+    .btn-outline-dark:hover {
+      background: rgba(11,27,63,0.06);
+    }
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 80px 0 100px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      color: var(--text-body);
+    }
+    .hero-image {
+      width: 100%;
+      height: 280px;
+      border-radius: 12px;
+      background: url('https://placehold.co/600x400?text=Team+Photo') center/cover;
+    }
+    .badge-row {
+      display: flex;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .badge {
+      width: 60px;
+      height: 60px;
+      background: rgba(34,197,94,0.12);
+      color: var(--success);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.3rem;
+    }
+    .hero-text h1 {
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+    .hero-text p {
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 24px;
+    }
+    .check-list {
+      list-style: none;
+      margin-bottom: 32px;
+      display: grid;
+      gap: 12px;
+    }
+    .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .check-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(34,197,94,0.2);
+      color: var(--success);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+    .logo-strip {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+    section {
+      padding: 80px 0;
+    }
+    .section-heading {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .section-heading h2 {
+      font-size: 2.1rem;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .section-heading p {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+    .feature-card {
+      text-align: center;
+      padding: 16px;
+    }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(37,99,235,0.1);
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      font-size: 1.5rem;
+      color: var(--accent);
+    }
+    .integrations-logos {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin: 40px 0;
+      font-weight: 600;
+      color: #9ca3af;
+    }
+    .integration-shot {
+      width: min(100%, 700px);
+      height: 360px;
+      border-radius: 24px;
+      margin: 0 auto;
+      background: linear-gradient(145deg,#07122a,#11265a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .integration-shot::before,
+    .integration-shot::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(37,99,235,0.5);
+      width: 120px;
+      height: 120px;
+    }
+    .integration-shot::before {
+      top: 20%;
+      left: 30%;
+    }
+    .integration-shot::after {
+      bottom: 20%;
+      right: 25%;
+      background: rgba(34,197,94,0.5);
+    }
+    .integration-shot span {
+      color: rgba(255,255,255,0.7);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+    }
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      height: 100%;
+    }
+    .stars {
+      color: var(--star);
+      margin-bottom: 16px;
+    }
+    .testimonial-card p {
+      font-style: italic;
+      margin-bottom: 16px;
+      color: var(--text-body);
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      align-items: center;
+    }
+    .steps {
+      position: relative;
+    }
+    .step-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+      border: 1px dashed rgba(11,27,63,0.2);
+    }
+    .step-card:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -12px;
+      width: 24px;
+      border-top: 2px dashed rgba(37,99,235,0.4);
+      transform: translateY(-50%);
+    }
+    .step-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(37,99,235,0.12);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+      margin: 0 auto 16px;
+    }
+    .step-connector {
+      width: 100%;
+      height: 2px;
+      border-top: 2px dashed rgba(37,99,235,0.4);
+      margin: 24px 0;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+    .info-grid img {
+      border-radius: 16px;
+    }
+    .cta {
+      background: var(--bg-light);
+    }
+    .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      margin-top: 40px;
+    }
+    form {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.1);
+    }
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+    }
+    .form-check input {
+      width: auto;
+      margin-top: 4px;
+    }
+    .cta-info {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.25);
+    }
+    .cta-info .check-list {
+      color: var(--white);
+    }
+    .avatar-row {
+      display: flex;
+      gap: 12px;
+    }
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: grid;
+      place-items: center;
+      font-weight: 600;
+    }
+    .impact {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+      padding: 80px 24px;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+    }
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.8);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 32px;
+      padding: 60px 0;
+    }
+    .footer-logo {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .footer-links {
+      display: grid;
+      gap: 8px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+    }
+    .footer-contact {
+      display: grid;
+      gap: 8px;
+    }
+    .footer-contact span {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 16px 0;
+      font-size: 0.85rem;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 12px;
+      }
+      .hero {
+        padding-top: 120px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .logo-strip {
+        justify-content: center;
+      }
+      .step-card:not(:last-child)::after {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav container">
+      <div class="logo">ICS-digital</div>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#cta">Get Started</a>
+        <button class="btn btn-secondary">Log In</button>
+        <button class="btn btn-primary">Sign Up</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="about">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div class="hero-image"></div>
+          <div class="badge-row">
+            <div class="badge">✓</div>
+            <div class="badge">✓</div>
+            <div class="badge">✓</div>
+          </div>
+          <button class="btn btn-primary" style="width:100%">Request Access →</button>
+        </div>
+        <div class="hero-text">
+          <h1>Effortless Link Building for Global SEO Success</h1>
+          <p>Custom-built marketplace operations deliver elite link acquisition. Build authority, drive growth, and grow backlinks with access to the broadest link-building marketplace globally.</p>
+          <ul class="check-list">
+            <li><span class="check-icon">✓</span>Quality Sites in Hundreds of Sectors</li>
+            <li><span class="check-icon">✓</span>Over 10K Site Partnerships Immediately Available</li>
+            <li><span class="check-icon">✓</span>Expert Native Language Access Centres</li>
+            <li><span class="check-icon">✓</span>Fast Turnaround and No Minimum Investment</li>
+          </ul>
+          <button class="btn btn-primary">Learn More →</button>
+          <div class="logo-strip">
+            <span>ahrefs</span>
+            <span>SEMRUSH</span>
+            <span>MOZ</span>
+            <span>MAJESTIC</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Why Choose ICS Marketplace?</h2>
+          <p>Streamlined link building with verified publishers, clear metrics and transparent pricing.</p>
+        </div>
+        <div class="features">
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Verified Publishers</h3>
+            <p>Every publisher is vetted for quality, metrics, and brand safety to ensure reliable link placements.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Transparent Metrics</h3>
+            <p>See core ranking data, visibility scores, and audience insights before you order links.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Rapid Delivery</h3>
+            <p>Get access to publisher inventory instantly with streamlined ordering and swift delivery.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: var(--bg-light);">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Integrations with Top-tier Platforms in the Industry</h2>
+          <p>Sort, filter, select and purchase links guided by metrics from Ahrefs, SEMrush, Moz and Majestic.</p>
+        </div>
+        <div class="integrations-logos">
+          <span style="color:#2563eb">ahrefs</span>
+          <span style="color:#f97316">SEMRUSH</span>
+          <span style="color:#0ea5e9">MOZ</span>
+          <span style="color:#9ca3af">MAJESTIC</span>
+        </div>
+        <div class="integration-shot">
+          <span>GLOBAL MAP VIEW</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-heading">
+          <h2>Trusted by 1000+ Global Brands</h2>
+          <p>See what our customers say about ICS Marketplace.</p>
+        </div>
+        <div class="testimonials">
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"ICS-digital have helped us scale our link building from 10 to 100+ quality links per month. The ROI is incredible."</p>
+            <small>CMO, E-commerce Brand</small>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"The quality of publishers is outstanding. We've seen a 300% increase in organic traffic since working with ICS."</p>
+            <small>Head of SEO, Fintech Scaleup</small>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>"Finally, a link-building agency that's transparent and delivers results. No more shady practices or low-quality sites."</p>
+            <small>Marketing Director, SaaS Platform</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background: var(--bg-light);">
+      <div class="container">
+        <div class="section-heading">
+          <h2>How It Works</h2>
+          <p>Our simple process and truly global off-site SEO marketplace makes international link building easy and effective.</p>
+        </div>
+        <div class="steps">
+          <div class="step-card">
+            <div class="step-icon">🔍</div>
+            <h3>Browse Sites</h3>
+            <p>Explore our marketplace and filter sites by category, metrics, niche and price.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon">🛒</div>
+            <h3>Place Order</h3>
+            <p>Select your sites, add them to your basket and checkout with transparent pricing.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-icon">📈</div>
+            <h3>Get Results</h3>
+            <p>Receive live content links, performance updates, and ongoing growth insights.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container info-grid">
+        <div>
+          <h2 style="color: var(--text-dark); margin-bottom: 16px;">What is Link Building?</h2>
+          <p>Link building is the process of earning authoritative backlinks that reinforce the value of your pages in the eyes of search engines. The ICS Digital Marketplace gives you instant access to diverse audiences and industry-relevant domains for focused link campaigns.</p>
+          <p>For meaningful organic growth, link authority, brand citations and media exposure work together to increase trust signals and rankings. Discover why it's <a href="#" style="color: var(--accent); font-weight:600;">a fundamental strategy</a> for anyone looking to accelerate international SEO success.</p>
+        </div>
+        <div>
+          <img src="https://placehold.co/600x400?text=Link+Building" alt="Link building" />
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="cta">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Ready to Start Building Quality Links?</h2>
+          <p>Join thousands of businesses growing their organic traffic.</p>
+        </div>
+        <div class="cta-grid">
+          <form>
+            <div class="form-row">
+              <div>
+                <label>Name *</label>
+                <input type="text" placeholder="Full name" required>
+              </div>
+              <div>
+                <label>Email address *</label>
+                <input type="email" placeholder="you@example.com" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div>
+                <label>Phone number</label>
+                <input type="tel" placeholder="+1 555 123 4567">
+              </div>
+              <div>
+                <label>Business name *</label>
+                <input type="text" placeholder="Company Inc" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div>
+                <label>Business type *</label>
+                <select>
+                  <option>Affiliate</option>
+                  <option>Agency</option>
+                  <option>Brand</option>
+                  <option>Publisher</option>
+                </select>
+              </div>
+              <div>
+                <label>Add Your Main Business URL</label>
+                <input type="url" placeholder="https://">
+              </div>
+            </div>
+            <div class="form-row">
+              <div>
+                <label>What's your role? *</label>
+                <select>
+                  <option>Owner / CEO</option>
+                  <option>Marketing Lead</option>
+                  <option>SEO Manager</option>
+                  <option>Operations</option>
+                </select>
+              </div>
+              <div>
+                <label>Industry *</label>
+                <select>
+                  <option>Accounting</option>
+                  <option>Finance</option>
+                  <option>E-commerce</option>
+                  <option>iGaming</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label>How many people work for your business? *</label>
+              <select>
+                <option>Just me</option>
+                <option>2-10</option>
+                <option>11-50</option>
+                <option>51-200</option>
+                <option>200+</option>
+              </select>
+            </div>
+            <label class="form-check">
+              <input type="checkbox" required>
+              <span>I agree to the Terms &amp; Conditions</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox">
+              <span>I agree to receive relevant newsletters</span>
+            </label>
+            <button type="submit" class="btn btn-primary" style="width:100%">Request Access →</button>
+          </form>
+          <div class="cta-info">
+            <h3>Effortless Link Building for SEO Success</h3>
+            <p>Create your free account today.</p>
+            <ul class="check-list">
+              <li><span class="check-icon">✓</span>Quality Sites</li>
+              <li><span class="check-icon">✓</span>Transparent Metrics</li>
+              <li><span class="check-icon">✓</span>Fast Turnaround</li>
+            </ul>
+            <div class="avatar-row">
+              <div class="avatar" style="background:#22c55e33; color:#22c55e;">✓</div>
+              <div class="avatar" style="background:#f59e0b33; color:#f59e0b;">★</div>
+              <div class="avatar" style="background:#2563eb33; color:#2563eb;">+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="impact">
+      Global Impact. Integrity in Action. Unprecedented Results.
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-logo">ICS-digital</div>
+        <div class="footer-contact">
+          <span>📞 +44 (0)113 436 1272</span>
+          <span>✉️ info@ics-digital.com</span>
+        </div>
+      </div>
+      <div>
+        <h4>Features</h4>
+        <div class="footer-links">
+          <a href="#">Publisher Network</a>
+          <a href="#">Workflow</a>
+          <a href="#">Analytics</a>
+          <a href="#">Compliance</a>
+        </div>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <div class="footer-links">
+          <a href="#">Features</a>
+          <a href="#">Pricing</a>
+          <a href="#">About</a>
+          <a href="#">Sign In</a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <div class="footer-links">
+          <a href="#">Services</a>
+          <a href="#">Sectors</a>
+          <a href="#">About Us</a>
+          <a href="#">Case Studies</a>
+        </div>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <div class="footer-links">
+          <a href="#">Customer User Guide</a>
+          <a href="#">Terms and Conditions</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      © 2025 ICS-digital LLP. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // simple smooth scrolling for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const targetId = link.getAttribute('href');
+        if (targetId.length > 1) {
+          e.preventDefault();
+          document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
