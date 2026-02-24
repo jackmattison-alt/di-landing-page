@@ -54,9 +54,11 @@
     header {
       position: sticky;
       top: 0;
-      background: var(--navy);
       z-index: 1000;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      background: rgba(10, 43, 80, 0.35);
+      backdrop-filter: blur(16px) saturate(130%);
+      -webkit-backdrop-filter: blur(16px) saturate(130%);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     .nav {
       display: flex;
@@ -121,37 +123,15 @@
       background: rgba(11,27,63,0.06);
     }
     .hero {
-      position: relative;
-      background: var(--navy);
+      background: linear-gradient(130deg, #2087b5 0%, #1b608b 55%, #0a2b50 100%);
       color: var(--white);
-      padding: 80px 0 100px;
-      overflow: hidden;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(10, 51, 92, 0.78);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-    }
-    .hero-bg video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      padding: 120px 0 100px;
     }
     .hero-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 40px;
       align-items: center;
-      position: relative;
-      z-index: 1;
     }
     .hero-card {
       background: var(--white);
@@ -159,33 +139,26 @@
       padding: 32px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.15);
       color: var(--text-body);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .hero-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(5,25,46,0.25);
     }
     .whitepaper-mockup {
+      position: relative;
       width: 100%;
       height: 320px;
       border-radius: 20px;
-      background: linear-gradient(140deg, #ffffff, #f4f5f9);
-      box-shadow: 0 20px 45px rgba(15,23,42,0.2);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 32px;
+      overflow: hidden;
+      box-shadow: 0 25px 55px rgba(5,25,46,0.3);
+      border: 1px solid rgba(255,255,255,0.15);
       transform: rotate(-2deg);
-      border: 1px solid rgba(15,23,42,0.1);
     }
-    .whitepaper-mockup span {
-      display: block;
-      color: var(--navy);
-    }
-    .mockup-title {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .mockup-subtitle {
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: var(--text-body);
+    .whitepaper-mockup img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .hero-text h1 {
       font-size: clamp(2rem, 4vw, 3rem);
@@ -230,10 +203,36 @@
       padding: 24px;
       text-align: center;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .stat-card.animate {
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform 0.5s ease, box-shadow 0.5s ease, opacity 0.5s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(32,135,181,0.25);
     }
     .stat-icon {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      border: 1px solid rgba(32,135,181,0.35);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      background: rgba(10,43,80,0.05);
+    }
+    .stat-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--accent);
+      stroke-width: 1.8;
+      fill: none;
     }
     .stat-value {
       font-size: 2.6rem;
@@ -269,6 +268,31 @@
       padding: 24px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       height: 100%;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    .benefit-card.animate {
+      opacity: 1;
+      transform: translateY(0);
+      transition: transform 0.5s ease, box-shadow 0.5s ease, opacity 0.5s ease;
+    }
+    .benefit-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, rgba(32,135,181,0.08), rgba(27,96,139,0.08));
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 40px rgba(10,51,92,0.18);
+    }
+    .benefit-card:hover::after {
+      opacity: 1;
     }
     .benefit-number {
       width: 44px;
@@ -354,6 +378,12 @@
       flex-direction: column;
       gap: 16px;
       box-shadow: 0 10px 30px rgba(15,23,42,0.25);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: border 0.3s ease, transform 0.3s ease;
+    }
+    .cta-info:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,0.2);
     }
     .cta-info h3 {
       color: var(--white);
@@ -382,7 +412,7 @@
       font-weight: 700;
     }
     .impact {
-      background: var(--navy);
+      background: linear-gradient(130deg, #2087b5 0%, #1b608b 55%, #0a2b50 100%);
       color: var(--white);
       text-align: center;
       padding: 80px 24px;
@@ -416,6 +446,25 @@
     .footer-contact a {
       color: rgba(255,255,255,0.9);
       font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-icon {
+      display: inline-flex;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: rgba(255,255,255,0.9);
+      stroke-width: 1.6;
+      fill: none;
     }
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,0.2);
@@ -454,20 +503,12 @@
     </div>
   </header>
 
-  <main>
+  <main style="margin-top:-96px">
     <section class="hero" id="hero">
-      <div class="hero-bg">
-        <video autoplay muted loop playsinline>
-          <source src="AdobeStock_607996702.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
       <div class="container hero-grid">
         <div class="hero-card">
           <div class="whitepaper-mockup">
-            <span class="mockup-title">The Human-Machine Memory Gap</span>
-            <span class="mockup-subtitle">Distinctiveness Intelligence™</span>
-            <span style="margin-top: auto; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted);">Whitepaper</span>
+            <img src="mockup.png" alt="Distinctiveness Intelligence whitepaper mockup">
           </div>
           <a class="btn btn-primary" href="#download-form" style="width:100%; margin-top: 24px;">Download Whitepaper →</a>
         </div>
@@ -493,17 +534,34 @@
         </div>
         <div class="stats-grid">
           <div class="stat-card">
-            <div class="stat-icon">🔎</div>
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="6"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
             <div class="stat-value">~50%</div>
             <p>of searches already have AI-generated summaries, a figure set to rise to over 75% by 2028.</p>
           </div>
           <div class="stat-card">
-            <div class="stat-icon">📈</div>
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 17 9 11 13 15 21 7"></polyline>
+                <polyline points="14 7 21 7 21 14"></polyline>
+              </svg>
+            </div>
             <div class="stat-value">527%</div>
             <p>increase YoY in AI search traffic in the first five months of 2025.</p>
           </div>
           <div class="stat-card">
-            <div class="stat-icon">🖱️</div>
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15.5 15.5L9 9"></path>
+                <path d="M9 9l0 10.5"></path>
+                <path d="M9 9l10.5 0"></path>
+                <path d="M12 3l0 4"></path>
+              </svg>
+            </div>
             <div class="stat-value">34.5%</div>
             <p>lower average CTR for the top-ranking page when AI overviews are present in search.</p>
           </div>
@@ -614,8 +672,23 @@
       <div class="footer-content">
         <div class="footer-logo"><img src="di-logo.svg" alt="Distinctiveness Intelligence™ logo"></div>
         <div class="footer-contact">
-          <a href="tel:+441134361272">📞 +44 (0)113 436 1272</a>
-          <a href="mailto:info@ics-digital.com">✉️ info@ics-digital.com</a>
+          <a href="tel:+441134361272">
+            <span class="footer-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.12 2h3a2 2 0 0 1 2 1.72c.13 1.21.42 2.39.87 3.5a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c1.11.45 2.29.74 3.5.87a2 2 0 0 1 1.73 1.17z"></path>
+              </svg>
+            </span>
+            +44 (0)113 436 1272
+          </a>
+          <a href="mailto:info@ics-digital.com">
+            <span class="footer-icon">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16v16H4z" fill="none"></path>
+                <polyline points="4,4 12,13 20,4"></polyline>
+              </svg>
+            </span>
+            info@ics-digital.com
+          </a>
         </div>
         <div class="footer-bottom">© 2026 ICS-digital LLP. All rights reserved.</div>
       </div>
@@ -632,6 +705,28 @@
         }
       });
     });
+
+    const observers = [];
+    function animateOnView(selector, activeClass) {
+      const elements = document.querySelectorAll(selector);
+      if (!elements.length) return;
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(activeClass);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      elements.forEach(el => {
+        el.classList.add('pre-animate');
+        observer.observe(el);
+      });
+      observers.push(observer);
+    }
+
+    animateOnView('.stat-card', 'animate');
+    animateOnView('.benefit-card', 'animate');
 
     (function() {
       const form = document.querySelector('form[name="whitepaper"]');

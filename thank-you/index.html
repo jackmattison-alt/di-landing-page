@@ -40,6 +40,17 @@
       width: min(100%, 640px);
       box-shadow: 0 25px 55px rgba(10,51,92,0.15);
       text-align: center;
+      animation: cardFade 0.8s ease forwards;
+    }
+    @keyframes cardFade {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     h1 {
       color: var(--accent);
