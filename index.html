@@ -275,6 +275,11 @@
       gap: 32px;
       margin-top: 40px;
     }
+    .hidden-field {
+      position: absolute;
+      left: -9999px;
+      opacity: 0;
+    }
     form {
       background: var(--white);
       border-radius: 16px;
@@ -514,7 +519,11 @@
           <p>Get your free copy of The Human-Machine Memory Gap.</p>
         </div>
         <div class="download-grid">
-          <form>
+          <form name="whitepaper" method="POST" action="/thank-you/" data-netlify="true" data-netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="whitepaper">
+            <p class="hidden-field">
+              <label>Leave this field empty <input name="bot-field" /></label>
+            </p>
             <div>
               <label>Name *</label>
               <input type="text" placeholder="Full name" required>
