@@ -3,7 +3,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 const TOKEN_SECRET = process.env.WHITEPAPER_TOKEN_SECRET;
-const TOKEN_PATH = path.join(__dirname, 'assets', 'the-human-machine-memory-gap.pdf');
+const WHITEPAPER_PATH = path.join(__dirname, 'the-human-machine-memory-gap.pdf');
 
 exports.handler = async (event) => {
   if (!TOKEN_SECRET) {
@@ -23,12 +23,12 @@ exports.handler = async (event) => {
     return { statusCode: 401, body: 'Invalid or expired token.' };
   }
 
-  if (!fs.existsSync(TOKEN_PATH)) {
-    console.error('Whitepaper file missing at', TOKEN_PATH);
+  if (!fs.existsSync(WHITEPAPER_PATH)) {
+    console.error('Whitepaper file missing at', WHITEPAPER_PATH);
     return { statusCode: 500, body: 'Whitepaper unavailable.' };
   }
 
-  const file = fs.readFileSync(TOKEN_PATH);
+  const file = fs.readFileSync(WHITEPAPER_PATH);
 
   return {
     statusCode: 200,
