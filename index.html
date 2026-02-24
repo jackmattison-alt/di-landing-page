@@ -3,33 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ICS Digital Marketplace</title>
+  <title>Distinctiveness Intelligence™</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy: #0b1b3f;
-      --navy-dark: #0a1628;
-      --accent: #2563eb;
+      --navy: #0a335c;
+      --navy-dark: #05192e;
+      --accent: #0f4c8a;
+      --accent-bright: #4798eb;
       --text-dark: #111827;
       --text-body: #4b5563;
-      --bg-light: #f3f6fb;
+      --bg-light: #e8f2fd;
       --white: #ffffff;
-      --star: #f59e0b;
-      --success: #22c55e;
+      --muted: #9ca3af;
       --max-width: 1200px;
     }
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    }
+    html {
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
     }
     body {
+      margin: 0;
       font-family: 'Inter', sans-serif;
       color: var(--text-body);
       background-color: var(--white);
       line-height: 1.6;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1;
     }
     img {
       max-width: 100%;
@@ -57,18 +63,15 @@
       padding: 16px 24px;
       color: var(--white);
     }
-    .logo {
-      font-weight: 700;
-      font-size: 1.2rem;
+    .logo img {
+      height: 36px;
+      width: auto;
+      filter: brightness(0) invert(1);
     }
     .nav-links {
       display: flex;
-      gap: 24px;
+      gap: 16px;
       align-items: center;
-    }
-    .nav-links a {
-      color: var(--white);
-      font-weight: 500;
     }
     .btn {
       display: inline-flex;
@@ -83,28 +86,29 @@
       border: none;
       cursor: pointer;
       box-shadow: none;
+      font-size: 0.95rem;
     }
     .btn-primary {
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      background: linear-gradient(135deg, var(--accent), var(--accent-bright));
       color: var(--white);
-      box-shadow: 0 12px 25px rgba(37,99,235,0.35);
+      box-shadow: 0 12px 25px rgba(15,76,138,0.35);
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 32px rgba(37,99,235,0.45);
-      background: linear-gradient(135deg, #1e4fd4, #3b82f6);
+      box-shadow: 0 18px 32px rgba(15,76,138,0.45);
+      background: linear-gradient(135deg, #0c3b6c, var(--accent-bright));
     }
     .btn-primary:focus-visible {
-      outline: 3px solid rgba(37,99,235,0.35);
+      outline: 3px solid rgba(15,76,138,0.35);
       outline-offset: 2px;
     }
-    .btn-secondary {
-      background: transparent;
-      color: var(--white);
+    .btn-outline-light {
       border: 1px solid rgba(255,255,255,0.7);
+      color: var(--white);
+      background: transparent;
     }
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.1);
+    .btn-outline-light:hover {
+      background: rgba(255,255,255,0.12);
     }
     .btn-outline-dark {
       border: 1px solid var(--navy);
@@ -113,19 +117,6 @@
     }
     .btn-outline-dark:hover {
       background: rgba(11,27,63,0.06);
-    }
-    .btn-outline-light {
-      border: 1px solid rgba(255,255,255,0.6);
-      color: var(--white);
-      background: transparent;
-    }
-    .btn-outline-light:hover {
-      background: rgba(255,255,255,0.12);
-    }
-    .hero-ctas {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
     }
     .hero {
       background: var(--navy);
@@ -140,237 +131,145 @@
     }
     .hero-card {
       background: var(--white);
-      border-radius: 16px;
-      padding: 24px;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
       color: var(--text-body);
     }
-    .hero-image {
+    .whitepaper-mockup {
       width: 100%;
-      height: 280px;
-      border-radius: 12px;
-      background: url('https://placehold.co/600x400?text=Team+Photo') center/cover;
-    }
-    .badge-row {
+      height: 320px;
+      border-radius: 20px;
+      background: linear-gradient(140deg, #ffffff, #f4f5f9);
+      box-shadow: 0 20px 45px rgba(15,23,42,0.2);
       display: flex;
-      gap: 16px;
-      margin: 24px 0;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px;
+      transform: rotate(-2deg);
+      border: 1px solid rgba(15,23,42,0.1);
     }
-    .badge {
-      width: 60px;
-      height: 60px;
-      background: rgba(34,197,94,0.12);
-      color: var(--success);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 1.3rem;
+    .whitepaper-mockup span {
+      display: block;
+      color: var(--navy);
+    }
+    .mockup-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .mockup-subtitle {
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--text-body);
     }
     .hero-text h1 {
-      font-size: clamp(2rem, 4vw, 2.6rem);
-      margin-bottom: 16px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 24px;
       color: var(--white);
     }
     .hero-text p {
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 24px;
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 16px;
     }
-    .check-list {
-      list-style: none;
-      margin-bottom: 32px;
-      display: grid;
-      gap: 12px;
-    }
-    .check-list li {
+    .hero-ctas {
       display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .check-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(34,197,94,0.2);
-      color: var(--success);
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-    }
-    .logo-strip {
-      display: flex;
-      gap: 32px;
+      gap: 16px;
       flex-wrap: wrap;
       margin-top: 32px;
-      color: rgba(255,255,255,0.7);
-      font-weight: 600;
-      letter-spacing: 0.08em;
     }
     section {
       padding: 80px 0;
     }
     .section-heading {
       text-align: center;
-      margin-bottom: 16px;
+      margin-bottom: 24px;
     }
     .section-heading h2 {
-      font-size: 2.1rem;
+      font-size: 2.2rem;
       color: var(--text-dark);
       margin-bottom: 12px;
     }
     .section-heading p {
-      max-width: 720px;
+      max-width: 800px;
       margin: 0 auto;
     }
-    .features {
+    .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px;
+      gap: 24px;
       margin-top: 40px;
     }
-    .feature-card {
+    .stat-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
       text-align: center;
-      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
-    .feature-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: rgba(37,99,235,0.1);
-      margin: 0 auto 16px;
-      display: grid;
-      place-items: center;
-      font-size: 1.5rem;
+    .stat-icon {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+    .stat-value {
+      font-size: 2.6rem;
+      font-weight: 700;
       color: var(--accent);
+      margin-bottom: 12px;
     }
-    .integrations-logos {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-      margin: 40px 0;
-      font-weight: 600;
-      color: #9ca3af;
+    .approach {
+      background: var(--bg-light);
     }
-    .integration-shot {
-      width: min(100%, 700px);
-      height: 360px;
-      border-radius: 24px;
-      margin: 0 auto;
-      background: linear-gradient(145deg,#07122a,#11265a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
+    .video-wrapper {
+      width: min(100%, 800px);
+      aspect-ratio: 16/9;
+      border-radius: 12px;
       overflow: hidden;
+      margin: 40px auto 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
     }
-    .integration-shot::before,
-    .integration-shot::after {
-      content: '';
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(37,99,235,0.5);
-      width: 120px;
-      height: 120px;
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
     }
-    .integration-shot::before {
-      top: 20%;
-      left: 30%;
-    }
-    .integration-shot::after {
-      bottom: 20%;
-      right: 25%;
-      background: rgba(34,197,94,0.5);
-    }
-    .integration-shot span {
-      color: rgba(255,255,255,0.7);
-      font-weight: 600;
-      letter-spacing: 0.2em;
-    }
-    .testimonials {
+    .benefits {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 24px;
       margin-top: 40px;
     }
-    .testimonial-card {
+    .benefit-card {
       background: var(--white);
-      padding: 24px;
       border-radius: 16px;
+      padding: 24px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       height: 100%;
     }
-    .stars {
-      color: var(--star);
-      margin-bottom: 16px;
-    }
-    .testimonial-card p {
-      font-style: italic;
-      margin-bottom: 16px;
-      color: var(--text-body);
-    }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-      align-items: center;
-    }
-    .steps {
-      position: relative;
-    }
-    .step-card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 24px;
-      text-align: center;
-      position: relative;
-      border: 1px dashed rgba(11,27,63,0.2);
-    }
-    .step-card:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: -12px;
-      width: 24px;
-      border-top: 2px dashed rgba(37,99,235,0.4);
-      transform: translateY(-50%);
-    }
-    .step-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: rgba(37,99,235,0.12);
+    .benefit-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(15,76,138,0.1);
       color: var(--accent);
       display: grid;
       place-items: center;
-      font-size: 1.6rem;
-      margin: 0 auto 16px;
-    }
-    .step-connector {
-      width: 100%;
-      height: 2px;
-      border-top: 2px dashed rgba(37,99,235,0.4);
-      margin: 24px 0;
-    }
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-      align-items: center;
-    }
-    .info-grid img {
-      border-radius: 16px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
     }
     .cta {
       background: var(--bg-light);
     }
     .cta .btn-primary {
-      background: linear-gradient(130deg, #f97316, #ec4899);
-      box-shadow: 0 18px 36px rgba(249,115,22,0.35);
+      background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+      box-shadow: 0 18px 36px rgba(15,76,138,0.35);
       font-size: 1.02rem;
     }
     .cta .btn-primary:hover {
-      background: linear-gradient(130deg, #ea580c, #db2777);
+      background: linear-gradient(135deg, #0c3b6c, var(--accent-bright));
     }
-    .cta-grid {
+    .download-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 32px;
@@ -381,6 +280,8 @@
       border-radius: 16px;
       padding: 32px;
       box-shadow: 0 10px 30px rgba(15,23,42,0.1);
+      display: grid;
+      gap: 16px;
     }
     label {
       display: block;
@@ -388,26 +289,20 @@
       margin-bottom: 8px;
       color: var(--text-dark);
     }
-    input, select {
+    input {
       width: 100%;
       padding: 12px;
       border: 1px solid #d1d5db;
       border-radius: 10px;
-      margin-bottom: 16px;
       font-size: 0.95rem;
       font-family: inherit;
-    }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
     }
     .form-check {
       display: flex;
       align-items: flex-start;
       gap: 8px;
-      margin-bottom: 12px;
       font-size: 0.9rem;
+      color: var(--text-body);
     }
     .form-check input {
       width: auto;
@@ -424,7 +319,26 @@
       box-shadow: 0 10px 30px rgba(15,23,42,0.25);
     }
     .cta-info .check-list {
-      color: var(--white);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .cta-info .check-list li {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .check-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(34,197,94,0.2);
+      color: #22c55e;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
     }
     .avatar-row {
       display: flex;
@@ -449,60 +363,47 @@
     }
     footer {
       background: var(--navy-dark);
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.9);
+      padding: 48px 0;
     }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 32px;
-      padding: 60px 0;
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
     }
-    .footer-logo {
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--white);
-      margin-bottom: 16px;
-    }
-    .footer-links {
-      display: grid;
-      gap: 8px;
-    }
-    .footer-links a {
-      color: rgba(255,255,255,0.75);
-      font-size: 0.95rem;
+    .footer-logo img {
+      height: 32px;
+      width: auto;
+      filter: brightness(0) invert(1);
     }
     .footer-contact {
-      display: grid;
-      gap: 8px;
-    }
-    .footer-contact span {
       display: flex;
+      flex-direction: column;
       gap: 8px;
-      align-items: center;
+      font-size: 0.95rem;
     }
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding: 16px 0;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      margin-top: 24px;
+      padding-top: 16px;
       font-size: 0.85rem;
     }
-    /* Responsive */
     @media (max-width: 768px) {
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: 12px;
+      .nav {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
       }
       .hero {
         padding-top: 120px;
       }
-      .form-row {
-        grid-template-columns: 1fr;
+      .hero-ctas {
+        flex-direction: column;
       }
-      .logo-strip {
-        justify-content: center;
-      }
-      .step-card:not(:last-child)::after {
-        display: none;
+      .footer-content {
+        align-items: center;
+        text-align: center;
       }
     }
   </style>
@@ -510,233 +411,129 @@
 <body>
   <header>
     <div class="nav container">
-      <div class="logo">ICS-digital</div>
+      <a href="#hero" class="logo"><img src="di-logo.svg" alt="Distinctiveness Intelligence™ logo"></a>
       <nav class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#cta">Get Started</a>
-        <button class="btn btn-secondary">Log In</button>
-        <button class="btn btn-primary">Sign Up</button>
+        <a href="#download-form" class="btn btn-primary">White Paper</a>
+        <a href="#" class="btn btn-outline-light">About DI</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero" id="about">
+    <section class="hero" id="hero">
       <div class="container hero-grid">
         <div class="hero-card">
-          <div class="hero-image"></div>
-          <div class="badge-row">
-            <div class="badge">✓</div>
-            <div class="badge">✓</div>
-            <div class="badge">✓</div>
+          <div class="whitepaper-mockup">
+            <span class="mockup-title">The Human-Machine Memory Gap</span>
+            <span class="mockup-subtitle">Distinctiveness Intelligence™</span>
+            <span style="margin-top: auto; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted);">White Paper</span>
           </div>
-          <button class="btn btn-primary" style="width:100%">Book a Strategy Call →</button>
+          <a class="btn btn-primary" href="#download-form" style="width:100%; margin-top: 24px;">Download White Paper →</a>
         </div>
         <div class="hero-text">
-          <h1>Launch International Authority Campaigns in Days, Not Months</h1>
-          <p>Plug the ICS Marketplace into your workflow to unlock vetted publishers, localized outreach teams, and transparent performance data without agency overhead.</p>
-          <ul class="check-list">
-            <li><span class="check-icon">✓</span>Curated inventory spanning 90+ markets and niches</li>
-            <li><span class="check-icon">✓</span>Live pricing, topical metrics, and editorial guidelines</li>
-            <li><span class="check-icon">✓</span>Native-language outreach teams and QA editors</li>
-            <li><span class="check-icon">✓</span>Guaranteed delivery windows with status tracking</li>
-          </ul>
+          <h1>Distinctiveness Intelligence™: Remembered by Humans. Retrieved by AI. Chosen by Both.</h1>
+          <p>AI has reshaped how people are discovering brands. It hasn't replaced search, but it has changed the way people discover, compare and choose.</p>
+          <p>Being visible in search is no longer enough; brands need to be understood and retrieved by AI systems — and distinct enough to be selected by humans at the point of purchase.</p>
+          <p>Distinctiveness Intelligence™ exists to address this shift.</p>
           <div class="hero-ctas">
-            <button class="btn btn-primary">Book a Strategy Call →</button>
-            <button class="btn btn-outline-light">View Publisher List</button>
-          </div>
-          <div class="logo-strip">
-            <span>ahrefs</span>
-            <span>SEMRUSH</span>
-            <span>MOZ</span>
-            <span>MAJESTIC</span>
+            <a class="btn btn-primary" href="#problem">Learn More →</a>
+            <a class="btn btn-outline-light" href="#download-form">Download White Paper →</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="features">
+    <section id="problem">
       <div class="container">
         <div class="section-heading">
-          <h2>Why Choose ICS Marketplace?</h2>
-          <p>Streamlined link building with verified publishers, clear metrics and transparent pricing.</p>
+          <h2>The New Problem for Brand Discovery</h2>
+          <p>Advanced AI systems (or LLMs) now intercept what a user sees much earlier in the search journey, with synthesised and summarised overviews appearing before a user can explore different brand options.</p>
+          <p>These are pulled from multiple sources. AI systems rely on meaning and consistent signals to retrieve brand information, not just keywords. This means that a brand can be visible but lack the strength of broad coherent signals required to be consistently retrieved and accurately represented.</p>
         </div>
-        <div class="features">
-          <div class="feature-card">
-            <div class="feature-icon">🛡️</div>
-            <h3>Verified Publishers</h3>
-            <p>Every publisher is vetted for quality, metrics, and brand safety to ensure reliable link placements.</p>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🔎</div>
+            <div class="stat-value">~50%</div>
+            <p>of searches already have AI-generated summaries, a figure set to rise to over 75% by 2028.</p>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3>Transparent Metrics</h3>
-            <p>See core ranking data, visibility scores, and audience insights before you order links.</p>
+          <div class="stat-card">
+            <div class="stat-icon">📈</div>
+            <div class="stat-value">527%</div>
+            <p>increase YoY in AI search traffic in the first five months of 2025.</p>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3>Rapid Delivery</h3>
-            <p>Get access to publisher inventory instantly with streamlined ordering and swift delivery.</p>
+          <div class="stat-card">
+            <div class="stat-icon">🖱️</div>
+            <div class="stat-value">34.5%</div>
+            <p>lower average CTR for the top-ranking page when AI overviews are present in search.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section style="background: var(--bg-light);">
+    <section class="approach" id="approach">
       <div class="container">
         <div class="section-heading">
-          <h2>Integrations with Top-tier Platforms in the Industry</h2>
-          <p>Sort, filter, select and purchase links guided by metrics from Ahrefs, SEMrush, Moz and Majestic.</p>
+          <h2>The DI Approach</h2>
+          <p>Distinctiveness Intelligence™ (DI) is a strategic approach aligning brand signals across human and machine memory. By aligning these signals, LLMs and AI systems can represent brands more clearly and accurately.</p>
         </div>
-        <div class="integrations-logos">
-          <span style="color:#2563eb">ahrefs</span>
-          <span style="color:#f97316">SEMRUSH</span>
-          <span style="color:#0ea5e9">MOZ</span>
-          <span style="color:#9ca3af">MAJESTIC</span>
-        </div>
-        <div class="integration-shot">
-          <span>GLOBAL MAP VIEW</span>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/pM24I9cEj-k" title="DI Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
     </section>
 
-    <section>
+    <section id="whitepaper">
       <div class="container">
         <div class="section-heading">
-          <h2>Trusted by 1000+ Global Brands</h2>
-          <p>See what our customers say about ICS Marketplace.</p>
+          <h2>Download: The Human-Machine Memory Gap (White Paper)</h2>
         </div>
-        <div class="testimonials">
-          <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p>"ICS-digital have helped us scale our link building from 10 to 100+ quality links per month. The ROI is incredible."</p>
-            <small>CMO, E-commerce Brand</small>
+        <div class="benefits">
+          <div class="benefit-card">
+            <div class="benefit-number">1</div>
+            <p>Learn how AI systems have fundamentally changed the landscape of discovery, mediating what users will see, evaluate and choose.</p>
           </div>
-          <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p>"The quality of publishers is outstanding. We've seen a 300% increase in organic traffic since working with ICS."</p>
-            <small>Head of SEO, Fintech Scaleup</small>
+          <div class="benefit-card">
+            <div class="benefit-number">2</div>
+            <p>Understand how AI summaries are increasingly flattening categories by including fewer brands and reducing differentiation and distinctiveness.</p>
           </div>
-          <div class="testimonial-card">
-            <div class="stars">★★★★★</div>
-            <p>"Finally, a link-building agency that's transparent and delivers results. No more shady practices or low-quality sites."</p>
-            <small>Marketing Director, SaaS Platform</small>
+          <div class="benefit-card">
+            <div class="benefit-number">3</div>
+            <p>Explore why strategies now need to optimise for both human and machine memory, with LLM brand retrieval shaped by semantic clarity, context, and cross-platform visibility.</p>
           </div>
+        </div>
+        <div style="text-align:center; margin-top: 40px;">
+          <a class="btn btn-primary" href="#download-form">Download White Paper →</a>
         </div>
       </div>
     </section>
 
-    <section style="background: var(--bg-light);">
+    <section class="cta" id="download-form">
       <div class="container">
         <div class="section-heading">
-          <h2>How It Works</h2>
-          <p>Our simple process and truly global off-site SEO marketplace makes international link building easy and effective.</p>
+          <h2>Download the White Paper</h2>
+          <p>Get your free copy of The Human-Machine Memory Gap.</p>
         </div>
-        <div class="steps">
-          <div class="step-card">
-            <div class="step-icon">🔍</div>
-            <h3>Browse Sites</h3>
-            <p>Explore our marketplace and filter sites by category, metrics, niche and price.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-icon">🛒</div>
-            <h3>Place Order</h3>
-            <p>Select your sites, add them to your basket and checkout with transparent pricing.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-icon">📈</div>
-            <h3>Get Results</h3>
-            <p>Receive live content links, performance updates, and ongoing growth insights.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container info-grid">
-        <div>
-          <h2 style="color: var(--text-dark); margin-bottom: 16px;">What is Link Building?</h2>
-          <p>Link building is the process of earning authoritative backlinks that reinforce the value of your pages in the eyes of search engines. The ICS Digital Marketplace gives you instant access to diverse audiences and industry-relevant domains for focused link campaigns.</p>
-          <p>For meaningful organic growth, link authority, brand citations and media exposure work together to increase trust signals and rankings. Discover why it's <a href="#" style="color: var(--accent); font-weight:600;">a fundamental strategy</a> for anyone looking to accelerate international SEO success.</p>
-        </div>
-        <div>
-          <img src="https://placehold.co/600x400?text=Link+Building" alt="Link building" />
-        </div>
-      </div>
-    </section>
-
-    <section class="cta" id="cta">
-      <div class="container">
-        <div class="section-heading">
-          <h2>Ready to Start Building Quality Links?</h2>
-          <p>Join thousands of businesses growing their organic traffic.</p>
-        </div>
-        <div class="cta-grid">
+        <div class="download-grid">
           <form>
-            <div class="form-row">
-              <div>
-                <label>Name *</label>
-                <input type="text" placeholder="Full name" required>
-              </div>
-              <div>
-                <label>Email address *</label>
-                <input type="email" placeholder="you@example.com" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div>
-                <label>Phone number</label>
-                <input type="tel" placeholder="+1 555 123 4567">
-              </div>
-              <div>
-                <label>Business name *</label>
-                <input type="text" placeholder="Company Inc" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div>
-                <label>Business type *</label>
-                <select>
-                  <option>Affiliate</option>
-                  <option>Agency</option>
-                  <option>Brand</option>
-                  <option>Publisher</option>
-                </select>
-              </div>
-              <div>
-                <label>Add Your Main Business URL</label>
-                <input type="url" placeholder="https://">
-              </div>
-            </div>
-            <div class="form-row">
-              <div>
-                <label>What's your role? *</label>
-                <select>
-                  <option>Owner / CEO</option>
-                  <option>Marketing Lead</option>
-                  <option>SEO Manager</option>
-                  <option>Operations</option>
-                </select>
-              </div>
-              <div>
-                <label>Industry *</label>
-                <select>
-                  <option>Accounting</option>
-                  <option>Finance</option>
-                  <option>E-commerce</option>
-                  <option>iGaming</option>
-                </select>
-              </div>
+            <div>
+              <label>Name *</label>
+              <input type="text" placeholder="Full name" required>
             </div>
             <div>
-              <label>How many people work for your business? *</label>
-              <select>
-                <option>Just me</option>
-                <option>2-10</option>
-                <option>11-50</option>
-                <option>51-200</option>
-                <option>200+</option>
-              </select>
+              <label>Email address *</label>
+              <input type="email" placeholder="you@example.com" required>
+            </div>
+            <div>
+              <label>Business name *</label>
+              <input type="text" placeholder="Organisation" required>
+            </div>
+            <div>
+              <label>Job title *</label>
+              <input type="text" placeholder="Role" required>
+            </div>
+            <div>
+              <label>Company website URL</label>
+              <input type="url" placeholder="https://">
             </div>
             <label class="form-check">
               <input type="checkbox" required>
@@ -744,22 +541,22 @@
             </label>
             <label class="form-check">
               <input type="checkbox">
-              <span>I agree to receive relevant newsletters</span>
+              <span>I agree to receive relevant communications</span>
             </label>
-            <button type="submit" class="btn btn-primary" style="width:100%">Request Access →</button>
+            <button type="submit" class="btn btn-primary" style="width:100%">Download White Paper →</button>
           </form>
           <div class="cta-info">
-            <h3>Effortless Link Building for SEO Success</h3>
-            <p>Create your free account today.</p>
+            <h3>Distinctiveness Intelligence™</h3>
+            <p>The Human-Machine Memory Gap</p>
             <ul class="check-list">
-              <li><span class="check-icon">✓</span>Quality Sites</li>
-              <li><span class="check-icon">✓</span>Transparent Metrics</li>
-              <li><span class="check-icon">✓</span>Fast Turnaround</li>
+              <li><span class="check-icon">✓</span>AI Discovery Insights</li>
+              <li><span class="check-icon">✓</span>Brand Retrieval Strategies</li>
+              <li><span class="check-icon">✓</span>Human &amp; Machine Memory Alignment</li>
             </ul>
             <div class="avatar-row">
               <div class="avatar" style="background:#22c55e33; color:#22c55e;">✓</div>
               <div class="avatar" style="background:#f59e0b33; color:#f59e0b;">★</div>
-              <div class="avatar" style="background:#2563eb33; color:#2563eb;">+</div>
+              <div class="avatar" style="background:#4798eb33; color:#4798eb;">+</div>
             </div>
           </div>
         </div>
@@ -767,72 +564,21 @@
     </section>
 
     <section class="impact">
-      Global Impact. Integrity in Action. Unprecedented Results.
+      Understood by Machines. Chosen by Humans. Built for Both.
     </section>
   </main>
 
   <footer>
-    <div class="container footer-grid">
-      <div>
-        <div class="footer-logo">ICS-digital</div>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo"><img src="di-logo.svg" alt="Distinctiveness Intelligence™ logo"></div>
         <div class="footer-contact">
           <span>📞 +44 (0)113 436 1272</span>
           <span>✉️ info@ics-digital.com</span>
         </div>
+        <div class="footer-bottom">© 2025 ICS-digital LLP. All rights reserved.</div>
       </div>
-      <div>
-        <h4>Features</h4>
-        <div class="footer-links">
-          <a href="#">Publisher Network</a>
-          <a href="#">Workflow</a>
-          <a href="#">Analytics</a>
-          <a href="#">Compliance</a>
-        </div>
-      </div>
-      <div>
-        <h4>Services</h4>
-        <div class="footer-links">
-          <a href="#">Features</a>
-          <a href="#">Pricing</a>
-          <a href="#">About</a>
-          <a href="#">Sign In</a>
-        </div>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <div class="footer-links">
-          <a href="#">Services</a>
-          <a href="#">Sectors</a>
-          <a href="#">About Us</a>
-          <a href="#">Case Studies</a>
-        </div>
-      </div>
-      <div>
-        <h4>Resources</h4>
-        <div class="footer-links">
-          <a href="#">Customer User Guide</a>
-          <a href="#">Terms and Conditions</a>
-          <a href="#">Cookie Policy</a>
-          <a href="#">Privacy Policy</a>
-        </div>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      © 2025 ICS-digital LLP. All rights reserved.
     </div>
   </footer>
-
-  <script>
-    // simple smooth scrolling for nav links
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        const targetId = link.getAttribute('href');
-        if (targetId.length > 1) {
-          e.preventDefault();
-          document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-  </script>
 </body>
 </html>
