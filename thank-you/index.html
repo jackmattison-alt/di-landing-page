@@ -71,6 +71,16 @@
       box-shadow: 0 18px 32px rgba(25,127,230,0.45);
       background: #0f66c0;
     }
+    .btn-secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(25,127,230,0.4);
+      box-shadow: none;
+    }
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      background: rgba(25,127,230,0.08);
+    }
     .secondary-link {
       display: inline-block;
       margin-top: 16px;
@@ -87,7 +97,7 @@
     <a id="download-link" class="btn btn-primary" href="/assets/the-human-machine-memory-gap.pdf" download>
       Download Whitepaper
     </a>
-    <a class="secondary-link" href="/">Back to Distinctiveness Intelligence™</a>
+    <a class="btn btn-secondary" href="/">Back to Distinctiveness Intelligence™</a>
   </div>
   <script>
     window.addEventListener('load', () => {

@@ -1,0 +1,6 @@
+[build]
+  functions = "netlify/functions"
+
+[[functions]]
+  name = "send-whitepaper"
+  type = "netlify:submission-created"
