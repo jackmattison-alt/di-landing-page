@@ -10,8 +10,8 @@
   <style>
     :root {
       --navy: #0a335c;
-      --accent: #0f4c8a;
-      --accent-bright: #4798eb;
+      --accent: #197FE6;
+      --accent-bright: #197FE6;
       --bg-light: #e8f2fd;
       --text-dark: #0f172a;
       --text-body: #4b5563;
@@ -41,7 +41,7 @@
       text-align: center;
     }
     h1 {
-      color: var(--navy);
+      color: var(--accent);
       margin-bottom: 16px;
       line-height: 1;
     }
@@ -62,13 +62,14 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+      background: var(--accent);
       color: var(--white);
-      box-shadow: 0 12px 25px rgba(15,76,138,0.35);
+      box-shadow: 0 12px 25px rgba(25,127,230,0.35);
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 32px rgba(15,76,138,0.45);
+      box-shadow: 0 18px 32px rgba(25,127,230,0.45);
+      background: #0f66c0;
     }
     .secondary-link {
       display: inline-block;
@@ -84,7 +85,7 @@
     <p>Your copy of <strong>The Human-Machine Memory Gap</strong> is ready.</p>
     <p>Use the button below to download instantly or bookmark this page for later.</p>
     <a id="download-link" class="btn btn-primary" href="/assets/the-human-machine-memory-gap.pdf" download>
-      Download White Paper
+      Download Whitepaper
     </a>
     <a class="secondary-link" href="/">Back to Distinctiveness Intelligence™</a>
   </div>

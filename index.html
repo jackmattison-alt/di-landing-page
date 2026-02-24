@@ -11,8 +11,8 @@
     :root {
       --navy: #0a335c;
       --navy-dark: #05192e;
-      --accent: #0f4c8a;
-      --accent-bright: #4798eb;
+      --accent: #197FE6;
+      --accent-bright: #197FE6;
       --text-dark: #111827;
       --text-body: #4b5563;
       --bg-light: #e8f2fd;
@@ -36,6 +36,7 @@
     }
     h1, h2, h3, h4, h5, h6 {
       line-height: 1;
+      color: var(--accent);
     }
     img {
       max-width: 100%;
@@ -91,15 +92,15 @@
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-bright));
       color: var(--white);
-      box-shadow: 0 12px 25px rgba(15,76,138,0.35);
+      box-shadow: 0 12px 25px rgba(25,127,230,0.35);
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 32px rgba(15,76,138,0.45);
-      background: linear-gradient(135deg, #0c3b6c, var(--accent-bright));
+      box-shadow: 0 18px 32px rgba(25,127,230,0.45);
+      background: linear-gradient(135deg, var(--accent), var(--accent-bright));
     }
     .btn-primary:focus-visible {
-      outline: 3px solid rgba(15,76,138,0.35);
+      outline: 3px solid rgba(25,127,230,0.35);
       outline-offset: 2px;
     }
     .btn-outline-light {
@@ -187,7 +188,7 @@
     }
     .section-heading h2 {
       font-size: 2.2rem;
-      color: var(--text-dark);
+      color: var(--accent);
       margin-bottom: 12px;
     }
     .section-heading p {
@@ -250,7 +251,7 @@
       width: 44px;
       height: 44px;
       border-radius: 12px;
-      background: rgba(15,76,138,0.1);
+      background: rgba(25,127,230,0.1);
       color: var(--accent);
       display: grid;
       place-items: center;
@@ -263,11 +264,11 @@
     }
     .cta .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-bright));
-      box-shadow: 0 18px 36px rgba(15,76,138,0.35);
+      box-shadow: 0 18px 36px rgba(25,127,230,0.35);
       font-size: 1.02rem;
     }
     .cta .btn-primary:hover {
-      background: linear-gradient(135deg, #0c3b6c, var(--accent-bright));
+      background: linear-gradient(135deg, var(--accent), var(--accent-bright));
     }
     .download-grid {
       display: grid;
@@ -322,6 +323,9 @@
       flex-direction: column;
       gap: 16px;
       box-shadow: 0 10px 30px rgba(15,23,42,0.25);
+    }
+    .cta-info h3 {
+      color: var(--white);
     }
     .cta-info .check-list {
       list-style: none;
@@ -418,7 +422,7 @@
     <div class="nav container">
       <a href="#hero" class="logo"><img src="di-logo.svg" alt="Distinctiveness Intelligence™ logo"></a>
       <nav class="nav-links">
-        <a href="#download-form" class="btn btn-primary">White Paper</a>
+        <a href="#download-form" class="btn btn-primary">Whitepaper</a>
         <a href="#" class="btn btn-outline-light">About DI</a>
       </nav>
     </div>
@@ -431,9 +435,9 @@
           <div class="whitepaper-mockup">
             <span class="mockup-title">The Human-Machine Memory Gap</span>
             <span class="mockup-subtitle">Distinctiveness Intelligence™</span>
-            <span style="margin-top: auto; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted);">White Paper</span>
+            <span style="margin-top: auto; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted);">Whitepaper</span>
           </div>
-          <a class="btn btn-primary" href="#download-form" style="width:100%; margin-top: 24px;">Download White Paper →</a>
+          <a class="btn btn-primary" href="#download-form" style="width:100%; margin-top: 24px;">Download Whitepaper →</a>
         </div>
         <div class="hero-text">
           <h1>Distinctiveness Intelligence™: Remembered by Humans. Retrieved by AI. Chosen by Both.</h1>
@@ -442,7 +446,7 @@
           <p>Distinctiveness Intelligence™ exists to address this shift.</p>
           <div class="hero-ctas">
             <a class="btn btn-primary" href="#problem">Learn More →</a>
-            <a class="btn btn-outline-light" href="#download-form">Download White Paper →</a>
+            <a class="btn btn-outline-light" href="#download-form">Download Whitepaper →</a>
           </div>
         </div>
       </div>
@@ -490,7 +494,7 @@
     <section id="whitepaper">
       <div class="container">
         <div class="section-heading">
-          <h2>Download: The Human-Machine Memory Gap (White Paper)</h2>
+          <h2>Download: The Human-Machine Memory Gap (Whitepaper)</h2>
         </div>
         <div class="benefits">
           <div class="benefit-card">
@@ -507,7 +511,7 @@
           </div>
         </div>
         <div style="text-align:center; margin-top: 40px;">
-          <a class="btn btn-primary" href="#download-form">Download White Paper →</a>
+          <a class="btn btn-primary" href="#download-form">Download Whitepaper →</a>
         </div>
       </div>
     </section>
@@ -515,11 +519,11 @@
     <section class="cta" id="download-form">
       <div class="container">
         <div class="section-heading">
-          <h2>Download the White Paper</h2>
+          <h2>Download the Whitepaper</h2>
           <p>Get your free copy of The Human-Machine Memory Gap.</p>
         </div>
         <div class="download-grid">
-          <form name="whitepaper" method="POST" action="/thank-you/" data-netlify="true" data-netlify-honeypot="bot-field">
+          <form name="whitepaper" method="POST" action="/thank-you" data-netlify="true" data-netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="whitepaper">
             <p class="hidden-field">
               <label>Leave this field empty <input name="bot-field" /></label>
@@ -552,7 +556,7 @@
               <input type="checkbox">
               <span>I agree to receive relevant communications</span>
             </label>
-            <button type="submit" class="btn btn-primary" style="width:100%">Download White Paper →</button>
+            <button type="submit" class="btn btn-primary" style="width:100%">Download Whitepaper →</button>
           </form>
           <div class="cta-info">
             <h3>Distinctiveness Intelligence™</h3>
@@ -565,7 +569,7 @@
             <div class="avatar-row">
               <div class="avatar" style="background:#22c55e33; color:#22c55e;">✓</div>
               <div class="avatar" style="background:#f59e0b33; color:#f59e0b;">★</div>
-              <div class="avatar" style="background:#4798eb33; color:#4798eb;">+</div>
+              <div class="avatar" style="background:#197FE633; color:#197FE6;">+</div>
             </div>
           </div>
         </div>
