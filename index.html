@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
     :root {
       --navy: #0a335c;
@@ -120,15 +121,37 @@
       background: rgba(11,27,63,0.06);
     }
     .hero {
+      position: relative;
       background: var(--navy);
       color: var(--white);
       padding: 80px 0 100px;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 51, 92, 0.78);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+    .hero-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     .hero-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 40px;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
     .hero-card {
       background: var(--white);
@@ -334,6 +357,7 @@
     }
     .cta-info h3 {
       color: var(--white);
+      font-size: 1.4rem;
     }
     .cta-info .check-list {
       list-style: none;
@@ -357,19 +381,6 @@
       place-items: center;
       font-weight: 700;
     }
-    .avatar-row {
-      display: flex;
-      gap: 12px;
-    }
-    .avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.15);
-      display: grid;
-      place-items: center;
-      font-weight: 600;
-    }
     .impact {
       background: var(--navy);
       color: var(--white);
@@ -386,25 +397,32 @@
     .footer-content {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      align-items: flex-start;
+      gap: 18px;
+      align-items: center;
+      text-align: center;
     }
     .footer-logo img {
-      height: 32px;
+      height: 36px;
       width: auto;
       filter: brightness(0) invert(1);
     }
     .footer-contact {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-size: 0.95rem;
+      gap: 24px;
+      font-size: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-contact a {
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
     }
     .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.15);
-      margin-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      margin-top: 16px;
       padding-top: 16px;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.75);
     }
     @media (max-width: 768px) {
       .nav {
@@ -438,6 +456,12 @@
 
   <main>
     <section class="hero" id="hero">
+      <div class="hero-bg">
+        <video autoplay muted loop playsinline>
+          <source src="AdobeStock_607996702.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
       <div class="container hero-grid">
         <div class="hero-card">
           <div class="whitepaper-mockup">
@@ -575,18 +599,13 @@
               <li><span class="check-icon">✓</span>Brand Retrieval Strategies</li>
               <li><span class="check-icon">✓</span>Human &amp; Machine Memory Alignment</li>
             </ul>
-            <div class="avatar-row">
-              <div class="avatar" style="background:#22c55e33; color:#22c55e;">✓</div>
-              <div class="avatar" style="background:#f59e0b33; color:#f59e0b;">★</div>
-              <div class="avatar" style="background:#197FE633; color:#197FE6;">+</div>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
     <section class="impact">
-      Understood by Machines. Chosen by Humans. Built for Both.
+      Remembered by Humans. Retrieved by AI. Chosen by Both.
     </section>
   </main>
 
@@ -595,10 +614,10 @@
       <div class="footer-content">
         <div class="footer-logo"><img src="di-logo.svg" alt="Distinctiveness Intelligence™ logo"></div>
         <div class="footer-contact">
-          <span>📞 +44 (0)113 436 1272</span>
-          <span>✉️ info@ics-digital.com</span>
+          <a href="tel:+441134361272">📞 +44 (0)113 436 1272</a>
+          <a href="mailto:info@ics-digital.com">✉️ info@ics-digital.com</a>
         </div>
-        <div class="footer-bottom">© 2025 ICS-digital LLP. All rights reserved.</div>
+        <div class="footer-bottom">© 2026 ICS-digital LLP. All rights reserved.</div>
       </div>
     </div>
   </footer>
