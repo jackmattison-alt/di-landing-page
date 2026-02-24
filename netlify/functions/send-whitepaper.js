@@ -7,11 +7,11 @@ const fetch = (...args) => {
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const FROM_EMAIL = process.env.WHITEPAPER_FROM_EMAIL;
-const DOWNLOAD_URL = process.env.WHITEPAPER_DOWNLOAD_URL || 'https://distinctivenessintelligence.netlify.app/assets/the-human-machine-memory-gap.pdf';
+const DOWNLOAD_URL = process.env.WHITEPAPER_DOWNLOAD_URL;
 
 exports.handler = async (event) => {
-  if (!RESEND_API_KEY || !FROM_EMAIL) {
-    console.error('Missing RESEND_API_KEY or WHITEPAPER_FROM_EMAIL environment variables');
+  if (!RESEND_API_KEY || !FROM_EMAIL || !DOWNLOAD_URL) {
+    console.error('Missing RESEND_API_KEY, WHITEPAPER_FROM_EMAIL, or WHITEPAPER_DOWNLOAD_URL environment variables');
     return {
       statusCode: 500,
       body: JSON.stringify({ message: 'Email service not configured.' })

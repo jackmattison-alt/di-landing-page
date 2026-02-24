@@ -1,16 +1,27 @@
 # Distinctiveness Intelligence Landing Page
 
-## Whitepaper email flow
+## Secure whitepaper flow
 
-This site now uses a Netlify Function to email the whitepaper download link whenever someone completes the form.
+The site now gates downloads behind short-lived tokens issued via Netlify Functions. Visitors must submit the form; the client
+posts the form data to Netlify (so submissions still appear in the dashboard) and then requests a token from
+`/.netlify/functions/create-download-token`. The thank-you page exchanges the token with `/.netlify/functions/download-whitepaper`,
+which streams the PDF from `netlify/functions/assets/the-human-machine-memory-gap.pdf`.
 
-### Setup steps
+### Environment variables
 
-1. Ensure the project is deployed on Netlify with Forms enabled (already handled by the HTML form attributes).
-2. Set the following environment variables in the Netlify dashboard (Site settings → Environment variables):
-   - `RESEND_API_KEY`: API key from [Resend](https://resend.com/) or update the function to use another provider.
-   - `WHITEPAPER_FROM_EMAIL`: The verified sender address (e.g. `Distinctiveness Intelligence <hello@yourdomain.com>`).
-   - `WHITEPAPER_DOWNLOAD_URL` (optional): Overrides the default public link to the PDF asset.
-3. Deploy the site. Netlify will pick up the `send-whitepaper` function and execute it on every form submission.
+Set these inside Netlify → Site settings → Environment variables:
 
-You can monitor submissions under **Netlify → Forms → whitepaper** and see function logs under **Netlify → Functions → send-whitepaper**.
+- `WHITEPAPER_TOKEN_SECRET`: a long random string (used to sign download tokens).
+- `WHITEPAPER_TOKEN_TTL` (optional): token lifetime in seconds (defaults to 900 = 15 minutes).
+
+Email delivery is still available via the `send-whitepaper` submission-created function. To enable it, also set:
+
+- `RESEND_API_KEY`: API key from Resend (or update the function to call another provider).
+- `WHITEPAPER_FROM_EMAIL`: Verified sender address.
+- `WHITEPAPER_DOWNLOAD_URL`: Public or signed URL that emails should point to (if unset the email function stays disabled).
+
+### Operational notes
+
+- Form submissions remain visible under **Netlify → Forms → whitepaper**.
+- Download attempts route through `download-whitepaper`; check **Netlify → Functions → download-whitepaper** for logs.
+- Replace `netlify/functions/assets/the-human-machine-memory-gap.pdf` with the production whitepaper when ready.

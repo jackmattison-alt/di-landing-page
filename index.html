@@ -314,6 +314,14 @@
       width: auto;
       margin-top: 4px;
     }
+    .form-status {
+      font-size: 0.9rem;
+      min-height: 1.4em;
+      color: var(--accent);
+    }
+    .form-status.error {
+      color: #dc2626;
+    }
     .cta-info {
       background: var(--navy);
       color: var(--white);
@@ -556,6 +564,7 @@
               <input type="checkbox" name="marketing-consent" value="yes">
               <span>I agree to receive relevant communications</span>
             </label>
+            <p class="form-status" id="whitepaper-status" aria-live="polite"></p>
             <button type="submit" class="btn btn-primary" style="width:100%">Download Whitepaper →</button>
           </form>
           <div class="cta-info">
@@ -593,5 +602,60 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const targetId = link.getAttribute('href');
+        if (targetId.length > 1) {
+          e.preventDefault();
+          document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    (function() {
+      const form = document.querySelector('form[name="whitepaper"]');
+      if (!form) return;
+      const statusEl = document.getElementById('whitepaper-status');
+      const submitButton = form.querySelector('button[type="submit"]');
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        statusEl?.classList.remove('error');
+        if (statusEl) statusEl.textContent = 'Submitting...';
+        if (submitButton) submitButton.disabled = true;
+
+        const formData = new FormData(form);
+        if (!formData.get('form-name')) {
+          formData.append('form-name', 'whitepaper');
+        }
+
+        try {
+          const response = await fetch('/', { method: 'POST', body: formData });
+          if (!response.ok) throw new Error('Form submission failed');
+
+          const tokenResponse = await fetch('/.netlify/functions/create-download-token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: formData.get('email') })
+          });
+          if (!tokenResponse.ok) throw new Error('Unable to generate download token');
+
+          const data = await tokenResponse.json();
+          if (!data.token) throw new Error('Token missing from response');
+          sessionStorage.setItem('whitepaperToken', data.token);
+          window.location.href = '/thank-you/?token=' + encodeURIComponent(data.token);
+        } catch (error) {
+          console.error(error);
+          if (statusEl) {
+            statusEl.textContent = 'Something went wrong. Please try again.';
+            statusEl.classList.add('error');
+          }
+          if (submitButton) submitButton.disabled = false;
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

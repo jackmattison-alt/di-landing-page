@@ -81,11 +81,14 @@
       transform: translateY(-2px);
       background: rgba(25,127,230,0.08);
     }
-    .secondary-link {
-      display: inline-block;
+    .btn[aria-disabled=\"true\"] {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .token-message {
       margin-top: 16px;
-      color: var(--accent);
-      font-weight: 600;
+      font-weight: 500;
+      color: var(--text-body);
     }
   </style>
 </head>
@@ -94,18 +97,36 @@
     <h1>Thank you.</h1>
     <p>Your copy of <strong>The Human-Machine Memory Gap</strong> is ready.</p>
     <p>Use the button below to download instantly or bookmark this page for later.</p>
-    <a id="download-link" class="btn btn-primary" href="/assets/the-human-machine-memory-gap.pdf" download>
+    <a id="download-link" class="btn btn-primary" href="#">
       Download Whitepaper
     </a>
     <a class="btn btn-secondary" href="/">Back to Distinctiveness Intelligence™</a>
+    <p id="token-message" class="token-message" aria-live="polite"></p>
   </div>
   <script>
-    window.addEventListener('load', () => {
-      const link = document.getElementById('download-link');
-      if (link) {
-        setTimeout(() => link.click(), 800);
+    (function() {
+      const downloadLink = document.getElementById('download-link');
+      const message = document.getElementById('token-message');
+      if (!downloadLink) {
+        return;
       }
-    });
+      const params = new URLSearchParams(window.location.search);
+      let token = params.get('token') || sessionStorage.getItem('whitepaperToken');
+      if (!token) {
+        downloadLink.setAttribute('aria-disabled', 'true');
+        message.textContent = 'Please complete the form to receive a secure download link.';
+        return;
+      }
+      sessionStorage.setItem('whitepaperToken', token);
+      const targetUrl = '/.netlify/functions/download-whitepaper?token=' + encodeURIComponent(token);
+      downloadLink.href = targetUrl;
+      downloadLink.addEventListener('click', () => {
+        setTimeout(() => {
+          sessionStorage.removeItem('whitepaperToken');
+        }, 1000);
+      });
+      message.textContent = 'This link expires shortly. Re-submit the form if it stops working.';
+    })();
   </script>
 </body>
 </html>
